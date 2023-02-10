@@ -1,0 +1,9 @@
+*.class
+*.xml
+*.iml
+*.class
+out/production/GUI/com/pasteleria/gui/Menu/MenuExpandible.class
+*.class
+out/production/GUI/com/pasteleria/gui/Menu/ContenedorGeneral.class
+out/production/GUI/com/pasteleria/gui/Menu/LanzadorSecciones.class
+out/production/GUI/com/pasteleria/gui/Menu/MenuExpandible.class
