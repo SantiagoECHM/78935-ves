@@ -976,11 +976,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Administracion\\Documents\\Santiago\\pp\\practica02\\practica02.csproj",
-      "projectName": "practica02",
-      "projectPath": "C:\\Users\\Administracion\\Documents\\Santiago\\pp\\practica02\\practica02.csproj",
+      "projectUniqueName": "C:\\Users\\Administracion\\soap-test\\soap-test.csproj",
+      "projectName": "soap-test",
+      "projectPath": "C:\\Users\\Administracion\\soap-test\\soap-test.csproj",
       "packagesPath": "C:\\Users\\Administracion\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Administracion\\Documents\\Santiago\\pp\\practica02\\obj\\",
+      "outputPath": "C:\\Users\\Administracion\\soap-test\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Administracion\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -1024,6 +1024,9 @@
         "assetTargetFallback": true,
         "warn": true,
         "frameworkReferences": {
+          "Microsoft.AspNetCore.App": {
+            "privateAssets": "none"
+          },
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
