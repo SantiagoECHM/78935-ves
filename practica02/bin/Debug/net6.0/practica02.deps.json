@@ -6,12 +6,12 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v6.0": {
-      "soap-test/1.0.0": {
+      "practica02/1.0.0": {
         "dependencies": {
           "SoapCore": "1.1.0.36"
         },
         "runtime": {
-          "soap-test.dll": {}
+          "practica02.dll": {}
         }
       },
       "Microsoft.NETCore.Platforms/3.1.0": {},
@@ -176,7 +176,7 @@
     }
   },
   "libraries": {
-    "soap-test/1.0.0": {
+    "practica02/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

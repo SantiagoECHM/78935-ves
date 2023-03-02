@@ -976,11 +976,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Administracion\\soap-test\\soap-test.csproj",
-      "projectName": "soap-test",
-      "projectPath": "C:\\Users\\Administracion\\soap-test\\soap-test.csproj",
+      "projectUniqueName": "C:\\Users\\Administracion\\Documents\\Santiago\\pp\\78935-ves\\practica02\\practica02.csproj",
+      "projectName": "practica02",
+      "projectPath": "C:\\Users\\Administracion\\Documents\\Santiago\\pp\\78935-ves\\practica02\\practica02.csproj",
       "packagesPath": "C:\\Users\\Administracion\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Administracion\\soap-test\\obj\\",
+      "outputPath": "C:\\Users\\Administracion\\Documents\\Santiago\\pp\\78935-ves\\practica02\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Administracion\\AppData\\Roaming\\NuGet\\NuGet.Config"
