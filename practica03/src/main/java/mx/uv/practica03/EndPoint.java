@@ -20,6 +20,7 @@ import https.t4is_uv_mx.saludos.ListarResponse;
 import https.t4is_uv_mx.saludos.SaludarRequest;
 
 @Endpoint
+<<<<<<< HEAD
 public class EndPoint{
     private List<String> saludos = new ArrayList<>();
     @PayloadRoot(localPart = "SaludarRequest", namespace="https://t4is.uv.mx/saludos")
@@ -80,4 +81,15 @@ public class EndPoint{
         i.setRespuesta("Lista: "+lista);
         return i;
     }
+=======
+public class EndPoint {
+    @PayloadRoot(localPart = "SaludarRequest", namespace = "https://t4is.uv.mx/saludos")
+    @ResponsePayload
+    public SaludarResponse Saludar(@RequestPayload SaludarRequest peticion) {
+        SaludarResponse respuesta = new SaludarResponse();
+        respuesta.setRespuesta("Hola " + peticion.getNombre());
+        return respuesta;
+    }
+
+>>>>>>> baf02edd6c1543fbc8d07a6f97d854d9cbda0843
 }
