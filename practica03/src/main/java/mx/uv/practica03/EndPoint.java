@@ -9,14 +9,13 @@ import https.t4is_uv_mx.saludos.SaludarResponse;
 import https.t4is_uv_mx.saludos.SaludarRequest;
 
 @Endpoint
-public class EndPoint{
-    @PayloadRoot(localPart = "SaludarRequest", namespace="https://t4is.uv.mx/saludos")
+public class EndPoint {
+    @PayloadRoot(localPart = "SaludarRequest", namespace = "https://t4is.uv.mx/saludos")
     @ResponsePayload
-    public SaludarResponse Saludar(@RequestPayload SaludarRequest peticion){
+    public SaludarResponse Saludar(@RequestPayload SaludarRequest peticion) {
         SaludarResponse respuesta = new SaludarResponse();
         respuesta.setRespuesta("Hola " + peticion.getNombre());
         return respuesta;
     }
 
-    
 }
