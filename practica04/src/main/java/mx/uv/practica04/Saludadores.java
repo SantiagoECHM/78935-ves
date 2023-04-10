@@ -31,5 +31,4 @@ public class Saludadores {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
 }
