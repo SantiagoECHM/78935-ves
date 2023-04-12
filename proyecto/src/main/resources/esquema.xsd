@@ -4,16 +4,18 @@ targetNamespace="https://t4is.uv.mx/empleados"
 xmlns:tns="https://t4is.uv.mx/empleados" 
 elementFormDefault="qualified">
 
-  <xs:element name="SaludarRequest">
+  <xs:element name="RegistrarEmpleadoRequest">
     <xs:complexType>
       <xs:sequence>
       	<xs:element name="nombre" type="xs:string"/>
-      	<xs:element name="edad" type="xs:int"/>
+      	<xs:element name="apellido" type="xs:string"/>
+        <xs:element name="edad" type="xs:int"/>
+      	<xs:element name="oficio" type="xs:string"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
         
-  <xs:element name="SaludarResponse">
+  <xs:element name="RegistrarEmpleadoResponse">
     <xs:complexType>
       <xs:sequence>
       	<xs:element name="respuesta" type="xs:string"/>
@@ -21,7 +23,7 @@ elementFormDefault="qualified">
     </xs:complexType>
   </xs:element>
 
-  <xs:element name="BuscarRequest">
+  <xs:element name="BuscarEmpleadoRequest">
     <xs:complexType>
       <xs:sequence>
         <xs:element name="buscadorId" type="xs:int"/>
@@ -29,7 +31,7 @@ elementFormDefault="qualified">
     </xs:complexType>
   </xs:element>
 
-  <xs:element name="BuscarResponse">
+  <xs:element name="BuscarEmpleadoResponse">
     <xs:complexType>
       <xs:sequence>
         <xs:element name="respuestaBuscar" type="xs:string"/>
@@ -37,17 +39,19 @@ elementFormDefault="qualified">
     </xs:complexType>
   </xs:element>
 
-  <xs:element name="EditarRequest">
+  <xs:element name="EditarEmpleadoRequest">
     <xs:complexType>
       <xs:sequence>
         <xs:element name="editarId" type="xs:int"/>
         <xs:element name="editarNombre" type="xs:string"/>
+        <xs:element name="editarApellido" type="xs:string"/>
         <xs:element name="editarEdad" type="xs:int"/>
+        <xs:element name="editarOficio" type="xs:string"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
 
-  <xs:element name="EditarResponse">
+  <xs:element name="EditarEmpleadoResponse">
     <xs:complexType>
       <xs:sequence>
         <xs:element name="respuestaEditar" type="xs:string"/>
@@ -55,7 +59,7 @@ elementFormDefault="qualified">
     </xs:complexType>
   </xs:element>
 
-  <xs:element name="EliminarRequest">
+  <xs:element name="EliminarEmpleadoRequest">
     <xs:complexType>
       <xs:sequence>
         <xs:element name="eliminarId" type="xs:int"/>
@@ -63,7 +67,7 @@ elementFormDefault="qualified">
     </xs:complexType>
   </xs:element>
 
-  <xs:element name="EliminarResponse">
+  <xs:element name="EliminarEmpleadoResponse">
     <xs:complexType>
       <xs:sequence>
         <xs:element name="respuestaEliminar" type="xs:string"/>
@@ -71,13 +75,7 @@ elementFormDefault="qualified">
     </xs:complexType>
   </xs:element>
 
-  <xs:element name="BuscarTodosRequest">
-  <xs:complexType>
-      <xs:sequence>
-        <xs:element name="preguntador" type="xs:int"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
+  <xs:element name="BuscarTodosRequest"/>
 
   <xs:element name="BuscarTodosResponse">
     <xs:complexType>

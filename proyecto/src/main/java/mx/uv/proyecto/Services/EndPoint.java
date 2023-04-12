@@ -1,6 +1,9 @@
 package mx.uv.proyecto.Services;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
@@ -8,14 +11,15 @@ import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
-import https.t4is_uv_mx.empleados.BuscarRequest;
-import https.t4is_uv_mx.empleados.BuscarResponse;
-import https.t4is_uv_mx.empleados.EditarRequest;
-import https.t4is_uv_mx.empleados.EditarResponse;
-import https.t4is_uv_mx.empleados.EliminarRequest;
-import https.t4is_uv_mx.empleados.EliminarResponse;
-import https.t4is_uv_mx.empleados.SaludarRequest;
-import https.t4is_uv_mx.empleados.SaludarResponse;
+import https.t4is_uv_mx.empleados.BuscarEmpleadoRequest;
+import https.t4is_uv_mx.empleados.BuscarEmpleadoResponse;
+import https.t4is_uv_mx.empleados.BuscarTodosResponse;
+import https.t4is_uv_mx.empleados.EditarEmpleadoRequest;
+import https.t4is_uv_mx.empleados.EditarEmpleadoResponse;
+import https.t4is_uv_mx.empleados.EliminarEmpleadoRequest;
+import https.t4is_uv_mx.empleados.EliminarEmpleadoResponse;
+import https.t4is_uv_mx.empleados.RegistrarEmpleadoRequest;
+import https.t4is_uv_mx.empleados.RegistrarEmpleadoResponse;
 import mx.uv.proyecto.Modelos.Empleado;
 import mx.uv.proyecto.Repository.EmpleadoRepositorio;
 
@@ -25,42 +29,47 @@ public class EndPoint {
     @Autowired
     private EmpleadoRepositorio empleadoRepositorio;
 
-    @PayloadRoot(localPart = "SaludarRequest", namespace = nameSpace_uri)
+    @PayloadRoot(localPart = "RegistrarEmpleadoRequest", namespace = nameSpace_uri)
     @ResponsePayload
-    public SaludarResponse Saludar(@RequestPayload SaludarRequest peticion) {
-        SaludarResponse respuesta = new SaludarResponse();
+    public RegistrarEmpleadoResponse Saludar(@RequestPayload RegistrarEmpleadoRequest peticion) {
+        RegistrarEmpleadoResponse respuesta = new RegistrarEmpleadoResponse();
         Empleado empleado = new Empleado();
-
-        respuesta.setRespuesta("Hola " + peticion.getNombre() + " bienvenido, tienes " + peticion.getEdad() + " años");
 
         // Guardar base de datos
         empleado.setName(peticion.getNombre());
+        empleado.setApellido(peticion.getApellido());
         empleado.setAge(peticion.getEdad());
+        empleado.setOficio(peticion.getOficio());
         empleadoRepositorio.save(empleado);
 
+        respuesta.setRespuesta("Se ha registrado el empleado " + peticion.getNombre() + " " + peticion.getApellido());
+
         return respuesta;
     }
 
-    @PayloadRoot(localPart = "BuscarRequest", namespace = nameSpace_uri)
+    @PayloadRoot(localPart = "BuscarEmpleadoRequest", namespace = nameSpace_uri)
     @ResponsePayload
-    public BuscarResponse Buscar(@RequestPayload BuscarRequest peticion) {
-        BuscarResponse respuesta = new BuscarResponse();
+    public BuscarEmpleadoResponse Buscar(@RequestPayload BuscarEmpleadoRequest peticion) {
+        BuscarEmpleadoResponse respuesta = new BuscarEmpleadoResponse();
         Empleado empleado = empleadoRepositorio.findById(peticion.getBuscadorId()).get();
 
-        respuesta.setRespuestaBuscar("El empleado No." + empleado.getId() + " " + empleado.getName() + " tiene "
-                + empleado.getAge() + " años");
+        respuesta.setRespuestaBuscar("ID: " + empleado.getId() + " Nombre: "
+                + empleado.getName() + " " + empleado.getApellido() + " Oficio: "
+                + empleado.getOficio());
 
         return respuesta;
     }
 
-    @PayloadRoot(localPart = "EditarRequest", namespace = nameSpace_uri)
+    @PayloadRoot(localPart = "EditarEmpleadoRequest", namespace = nameSpace_uri)
     @ResponsePayload
-    public EditarResponse Editar(@RequestPayload EditarRequest peticion) {
-        EditarResponse respuesta = new EditarResponse();
+    public EditarEmpleadoResponse Editar(@RequestPayload EditarEmpleadoRequest peticion) {
+        EditarEmpleadoResponse respuesta = new EditarEmpleadoResponse();
         Empleado empleado = empleadoRepositorio.findById(peticion.getEditarId()).get();
 
         empleado.setName(peticion.getEditarNombre());
+        empleado.setApellido(peticion.getEditarApellido());
         empleado.setAge(peticion.getEditarEdad());
+        empleado.setOficio(peticion.getEditarOficio());
 
         empleadoRepositorio.save(empleado);
 
@@ -69,10 +78,10 @@ public class EndPoint {
         return respuesta;
     }
 
-    @PayloadRoot(localPart = "EliminarRequest", namespace = nameSpace_uri)
+    @PayloadRoot(localPart = "EliminarEmpleadoRequest", namespace = nameSpace_uri)
     @ResponsePayload
-    public EliminarResponse Eliminar(@RequestPayload EliminarRequest peticion) {
-        EliminarResponse respuesta = new EliminarResponse();
+    public EliminarEmpleadoResponse Eliminar(@RequestPayload EliminarEmpleadoRequest peticion) {
+        EliminarEmpleadoResponse respuesta = new EliminarEmpleadoResponse();
 
         Empleado empleado = empleadoRepositorio.findById(peticion.getEliminarId()).get();
 
@@ -81,6 +90,22 @@ public class EndPoint {
         empleadoRepositorio.delete(empleado);
 
         // Nota: también se puede eliminar por el id deleteById
+
+        return respuesta;
+    }
+
+    @PayloadRoot(localPart = "BuscarTodosRequest", namespace = nameSpace_uri)
+    @ResponsePayload
+    public BuscarTodosResponse BuscarTodos() {
+        BuscarTodosResponse respuesta = new BuscarTodosResponse();
+        ArrayList<Empleado> empleado;
+        empleado = (ArrayList<Empleado>) empleadoRepositorio.findAll();
+
+        for (int i = 0; i < empleado.size(); i++) {
+            respuesta.getRespuestaTodos().add("ID: " + empleado.get(i).getId() + " Nombre: "
+                    + empleado.get(i).getName() + " " + empleado.get(i).getApellido() + " Oficio: "
+                    + empleado.get(i).getOficio());
+        }
 
         return respuesta;
     }
