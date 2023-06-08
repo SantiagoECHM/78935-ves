@@ -1,0 +1,26 @@
+type Query{
+    maestros: [Maestro]
+    maestroById(id: ID!): Maestro
+}
+
+type Mutation{
+    agregarSalon(salon: SalonInput): Salon
+}
+
+input SalonInput{
+    nombre: String!
+    edificio: String
+    idMaestro: ID!
+}
+
+type Maestro{
+    id: ID!
+    nombre: String!
+    salones: [Salon]
+}
+
+type Salon{
+    id:ID!
+    nombre: String!
+    edificio: String!
+}
